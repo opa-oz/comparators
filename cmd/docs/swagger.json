@@ -1,0 +1,127 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/compare/preview": {
+            "get": {
+                "description": "Compare preview from S3 with preview from site",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "api"
+                ],
+                "summary": "compare preview from S3 with preview from site",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Type",
+                        "name": "type",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "ID",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Resp"
+                        }
+                    }
+                }
+            }
+        },
+        "/healz": {
+            "get": {
+                "description": "Check health endpoint",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "utils"
+                ],
+                "summary": "healz",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Healz.response"
+                        }
+                    }
+                }
+            }
+        },
+        "/ready": {
+            "get": {
+                "description": "Check readiness",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "utils"
+                ],
+                "summary": "ready",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Ready.response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "api.Healz.response": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "OK"
+                }
+            }
+        },
+        "api.Ready.response": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Ready"
+                }
+            }
+        },
+        "api.Resp": {
+            "type": "object",
+            "properties": {
+                "diff": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "response": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

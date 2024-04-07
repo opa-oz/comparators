@@ -1,0 +1,82 @@
+definitions:
+  api.Healz.response:
+    properties:
+      message:
+        example: OK
+        type: string
+    type: object
+  api.Ready.response:
+    properties:
+      message:
+        example: Ready
+        type: string
+    type: object
+  api.Resp:
+    properties:
+      diff:
+        type: number
+      id:
+        type: integer
+      response:
+        type: boolean
+    type: object
+info:
+  contact: {}
+paths:
+  /compare/preview:
+    get:
+      consumes:
+      - application/json
+      description: Compare preview from S3 with preview from site
+      parameters:
+      - description: Type
+        in: query
+        name: type
+        required: true
+        type: string
+      - description: ID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.Resp'
+      summary: compare preview from S3 with preview from site
+      tags:
+      - api
+  /healz:
+    get:
+      consumes:
+      - application/json
+      description: Check health endpoint
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.Healz.response'
+      summary: healz
+      tags:
+      - utils
+  /ready:
+    get:
+      consumes:
+      - application/json
+      description: Check readiness
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.Ready.response'
+      summary: ready
+      tags:
+      - utils
+swagger: "2.0"
